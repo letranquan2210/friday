@@ -1,0 +1,33 @@
+package bubblesort;
+
+import java.util.Scanner;
+
+public class CheckInput {
+
+    public static int checkIntInput() {
+        Scanner sc = new Scanner(System.in);
+        boolean result = false;
+        String intInput = "";
+        do {
+            String digit = "(^-)*\\d+";
+            intInput = sc.nextLine();
+            try {
+                result = intInput.matches(digit);
+                if (intInput.trim().isEmpty()) {
+                    System.out.println("Input is not blank. Input again: ");
+                    result = false;
+                }
+                else if (!result) {
+                    System.out.println("Number is a digit. Input again: ");
+                    result = false;
+                } else if (Integer.parseInt(intInput) < 0) {
+                    System.out.println("Input must greater or equals 0. Input again: ");
+                    result = false;
+                } 
+            } catch (Exception e) {
+                System.out.println("Input must between 0 to 2147483647. Input again: ");
+            }
+        } while (!result);
+        return Integer.parseInt(intInput);
+    }
+}
